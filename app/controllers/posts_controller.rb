@@ -7,7 +7,6 @@ class PostsController < ApplicationController
 
   def show
   	@post = Post.find(params[:id])
-  	# @likers = Post.where("post_id = ?",params[:id])
   end
 
   def create
