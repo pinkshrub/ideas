@@ -1,0 +1,30 @@
+<div>
+	<h2>Welcome!</h2>
+	<% if flash[:errors] %>
+		<% flash[:errors].each do |error| %>
+			<p><%= error %></p>
+		<% end %>
+	<% end %>
+	<div style="display: inline-block; vertical-align: top;">
+		<h4>Register</h4>
+		<form action="/users/create" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			Name: <input type="text" name="user[name]"><br>
+			Alias: <input type="text" name="user[alias]"><br>
+			Email: <input type="email" name="user[email]"><br>
+			Password: <input type="password" name="user[password]"><br>
+			*password should be at least 8 characters
+			Confirm pw: <input type="password" name="user[password_confirmation]"><br>
+			<input type="submit" value="Register">
+		</form>
+	</div>
+	<div style="display: inline-block; vertical-align: top;">
+		<h4>Login</h4>
+		<form action="/users/login" method="post">
+			<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+			Email: <input type="email" name="email"><br>
+			Password: <input type="password" name="password"><br>
+			<input type="submit" value="login">
+		</form>
+	</div>
+</div>

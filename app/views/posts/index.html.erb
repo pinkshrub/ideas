@@ -1,0 +1,25 @@
+<a href="/logout/">logout</a>
+<div>
+	<p> Hi! <%= @user.alias %></p>
+
+	<form action="/posts/create" method="post">
+		<input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+		<input type="text" name="post[content]" placeholder="Your brilliant Idea goes here...">
+		<input type="submit" value="Idea!">
+	</form>
+	<% if flash[:errors] %>
+		<% flash[:errors].each do |errors| %>
+			<p><%= error %></p>
+		<% end %>
+	<% end %>
+
+	<% @posts.each do |post| %>
+		<div style="border: 2px solid black; width: 250px;">
+			<p><a href="/users/<%= post.owner.id %>"><%= post.owner.alias %></a> says:</p><p><%= post.content %></p>
+			<a href="/likes/create/<%=post.id%>">Like</a><a href="/bright_ideas/<%= post.id %>"><p><%= post.total_likes %> likes by peeps</p></a>
+			<% if post.owner.id == session[:user_id] %>
+				<a href="/posts/delete/<%=post.id%>">Delete</a>
+			<% end %>
+		</div>
+	<% end %>
+</div>
