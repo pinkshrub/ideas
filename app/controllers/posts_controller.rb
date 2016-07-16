@@ -20,6 +20,11 @@ class PostsController < ApplicationController
   	end
   end
 
+  def delete
+    Post.find(params[:id]).destroy
+    redirect_to '/bright_ideas'
+  end
+
 
   private
   def post_params

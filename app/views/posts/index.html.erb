@@ -18,7 +18,7 @@
 			<p><a href="/users/<%= post.owner.id %>"><%= post.owner.alias %></a> says:</p><p><%= post.content %></p>
 			<a href="/likes/create/<%=post.id%>">Like</a><a href="/bright_ideas/<%= post.id %>"><p><%= post.total_likes %> likes by peeps</p></a>
 			<% if post.owner.id == session[:user_id] %>
-				<a href="/posts/delete/<%=post.id%>">Delete</a>
+				<a href="/posts/<%=post.id%>" data-method="delete">Delete</a>
 			<% end %>
 		</div>
 	<% end %>
